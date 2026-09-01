@@ -56,7 +56,7 @@
   margin: 68px;
   padding: 16px;
   color: white;
-  background-color: rgba(19 19 19 / 75%);
+  background-color: var(--overlay-strong);
   position: relative;
   width: var(--slide-content-width, auto);
 }
@@ -67,7 +67,7 @@
   justify-content: center;
   gap: 6px 12px;
   padding: 12px;
-  background-color: var(--light-color);
+  background-color: var(--color-surface-raised);
   line-height: 0;
 }
 
@@ -77,14 +77,14 @@
   margin: 0;
   padding: 0;
   border-radius: 50%;
-  background-color: #dadada;
+  background-color: var(--color-border);
   transition: background-color 0.2s;
 }
 
 .carousel .carousel-slide-indicator button:disabled,
 .carousel .carousel-slide-indicator button:hover,
 .carousel .carousel-slide-indicator button:focus-visible {
-  background-color: var(--text-color);
+  background-color: var(--color-text);
 }
 
 .carousel .carousel-navigation-buttons {
@@ -107,13 +107,13 @@
   margin: 0;
   border-radius: 50%;
   padding: 0;
-  background-color: rgba(19 19 19 / 25%);
+  background-color: var(--overlay-soft);
   transition: background-color 0.2s;
 }
 
 .carousel .carousel-navigation-buttons button:hover,
 .carousel .carousel-navigation-buttons button:focus-visible {
-  background-color: rgba(19 19 19 / 75%);
+  background-color: var(--overlay-strong);
 }
 
 .carousel .carousel-navigation-buttons button::after {

@@ -1,5 +1,3 @@
-@import url('brand.css');
-
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -12,50 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
+/* Brand-scoped colours and type live in styles/brands/<key>.css against the
+   --color-* / --font-* / --font-size-* contract (styles/tokens/contract.json).
+   This file keeps only component-level tokens that aren't part of that contract. */
 :root {
-  /* colors (from brand.css: --background-color, --text-color, --link-color,
-     --link-hover-color, --light-color, --dark-color, --brand-red) */
-
-  /* fonts (heading/body families from brand.css) */
-
-  /* body sizes */
-  --body-font-size-m: 18px;
-  --body-font-size-s: 16px;
-  --body-font-size-xs: 14px;
-
-  /* heading sizes */
-  --heading-font-size-xxl: var(--heading-size-xxl);
-  --heading-font-size-xl: var(--heading-size-xl);
-  --heading-font-size-l: var(--heading-size-l);
-  --heading-font-size-m: var(--heading-size-m);
-  --heading-font-size-s: var(--heading-size-s);
-  --heading-font-size-xs: var(--heading-size-xs);
-
   /* nav heights */
+  --nav-height: 60px;
   --breadcrumbs-height: 34px;
   --header-height: var(--nav-height);
-}
-
-@media (width <= 899px) {
-  :root {
-    /* mobile heading sizes */
-    --heading-font-size-xxl: 36px;
-    --heading-font-size-xl: 28px;
-    --heading-font-size-l: 24px;
-    --heading-font-size-m: 20px;
-    --heading-font-size-s: 18px;
-    --heading-font-size-xs: 16px;
-  }
 }
 
 body {
   display: none;
   margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-base);
 }
 
 body.appear {
@@ -90,32 +62,32 @@ h5,
 h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
-  font-family: var(--heading-font-family);
-  font-weight: 700;
-  line-height: 1.1;
+  font-family: var(--font-heading);
+  font-weight: var(--heading-weight);
+  line-height: var(--line-height-tight);
   scroll-margin: 40px;
-  color: var(--brand-red);
-  text-transform: uppercase;
+  color: var(--color-accent);
+  text-transform: var(--heading-transform);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h1 { font-size: var(--font-size-heading-xxl); }
+h2 { font-size: var(--font-size-heading-xl); }
+h3 { font-size: var(--font-size-heading-l); }
+h5 { font-size: var(--font-size-heading-s); }
+h6 { font-size: var(--font-size-heading-xs); }
 
-/* h4 subheadings on this brand are not uppercase/red by default */
+/* h4's emphasis (weight/case/colour) is this brand's one exception; see --heading-h4-* */
 h4 {
-  font-size: var(--heading-font-size-m);
-  color: var(--text-color);
-  text-transform: none;
-  font-weight: 500;
+  font-size: var(--font-size-heading-m);
+  color: var(--heading-h4-color);
+  text-transform: var(--heading-h4-transform);
+  font-weight: var(--heading-h4-weight);
 }
 
 p {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-m);
   line-height: 1.5;
-  color: var(--text-color);
+  color: var(--color-text);
 }
 
 p,
@@ -130,13 +102,13 @@ blockquote {
 
 code,
 pre {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-s);
 }
 
 pre {
   padding: 16px;
   border-radius: 8px;
-  background-color: var(--light-color);
+  background-color: var(--color-surface-raised);
   overflow-x: auto;
   white-space: pre;
 }
@@ -154,13 +126,13 @@ button {
 
 /* links */
 a:any-link {
-  color: var(--link-color);
+  color: var(--color-link);
   text-decoration: none;
   word-break: break-word;
 }
 
 a:hover {
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
   text-decoration: underline;
 }
 
@@ -171,54 +143,55 @@ button {
   display: inline-block;
   max-width: 100%;
   margin: 12px 0;
-  border: 2px solid var(--brand-red);
-  border-radius: 0;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--button-radius);
   padding: 0.6em 1.6em;
-  font-family: var(--heading-font-family);
+  font-family: var(--font-heading);
   font-style: normal;
-  font-weight: 600;
+  font-weight: var(--button-weight);
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  background-color: var(--brand-red);
-  color: #fff;
+  text-transform: var(--button-transform);
+  letter-spacing: var(--button-tracking);
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
   cursor: pointer;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard);
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: #a30f28;
-  border-color: #a30f28;
-  color: #fff;
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: var(--color-accent-contrast);
   cursor: pointer;
 }
 
 button:disabled,
 button:disabled:hover {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: #999;
+  background-color: var(--color-surface-raised);
+  border-color: var(--color-surface-raised);
+  color: var(--color-text-muted);
   cursor: unset;
 }
 
 a.button.secondary,
 button.secondary {
   background-color: unset;
-  border: 2px solid var(--brand-red);
-  color: var(--brand-red);
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
 }
 
 a.button.secondary:hover,
 button.secondary:hover {
-  background-color: var(--brand-red);
-  color: #fff;
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
 }
 
 main img {
@@ -244,7 +217,7 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: var(--layout-max-width);
   margin: auto;
   padding: 0 24px;
 }
@@ -263,14 +236,14 @@ main > .section:first-of-type {
 main .section.light,
 main .section.highlight,
 main .section.grey {
-  background-color: var(--light-color);
+  background-color: var(--color-surface-raised);
   margin: 0;
   padding: 40px 0;
 }
 
 main .section.dark {
-  background-color: var(--dark-color);
-  color: #fff;
+  background-color: var(--color-surface-inverse);
+  color: var(--color-text-inverse);
   margin: 0;
   padding: 40px 0;
 }
@@ -278,5 +251,5 @@ main .section.dark {
 main .section.dark h1,
 main .section.dark h2,
 main .section.dark h3 {
-  color: #fff;
+  color: var(--color-text-inverse);
 }

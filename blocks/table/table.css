@@ -7,28 +7,28 @@
   width: 100%;
   max-width: 100%;
   border-collapse: collapse;
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-xs);
 }
 
 @media (width >= 600px) {
   .table table {
-    font-size: var(--body-font-size-s);
+    font-size: var(--font-size-s);
   }
 }
 
 @media (width >= 900px) {
   .table table {
-    font-size: var(--body-font-size-m);
+    font-size: var(--font-size-m);
   }
 }
 
 .table table thead tr {
-  border-top: 2px solid #dadada;
-  border-bottom: 2px solid #dadada;
+  border-top: 2px solid var(--color-border);
+  border-bottom: 2px solid var(--color-border);
 }
 
 .table table tbody tr {
-  border-bottom: 1px solid #dadada;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .table table th {
@@ -52,16 +52,16 @@
 
 /* no header variant */
 .table.no-header table tbody tr {
-  border-top: 1px solid #dadada;
+  border-top: 1px solid var(--color-border);
 }
 
 /* striped variant */
 .table.striped tbody tr:nth-child(odd) {
-  background-color: var(--light-color);
+  background-color: var(--color-surface-raised);
 }
 
 /* bordered variant */
 .table.bordered table th,
 .table.bordered table td {
-  border: 1px solid #dadada;
+  border: 1px solid var(--color-border);
 }

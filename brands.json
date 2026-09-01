@@ -1,0 +1,18 @@
+{
+  "default": "driv",
+  "brands": {
+    "driv": {
+      "key":        "driv",
+      "name":       "DRiV",
+      "pathPrefix": "/",
+      "hosts": [
+        "main--driv--naveenkambam-codeandtheory.aem.page",
+        "main--driv--naveenkambam-codeandtheory.aem.live"
+      ],
+      "locales":    ["en-us"],
+      "indexPath":  "/query-index.json",
+      "features":   {},
+      "endpoints":  {}
+    }
+  }
+}

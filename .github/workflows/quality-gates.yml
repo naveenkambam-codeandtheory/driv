@@ -1,0 +1,75 @@
+# Enforces the multi-brand EDS framework on every PR to main.
+# The fast static checks run first so the slower per-brand budgets job only ever
+# fails on something the fast job could not already catch.
+
+name: Quality gates
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  static:
+    name: Lint, tokens, skills
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: ESLint
+        run: npx eslint . --max-warnings 0
+      - name: Stylelint
+        run: npx stylelint "**/*.css" --max-warnings 0
+      - name: Token contract, literal scan, fork ratio
+        run: node scripts/validate-tokens.mjs
+
+      - name: Skills present, pinned and undrifted
+        # Fails on a missing skill, unparseable frontmatter, a missing description,
+        # or content that differs from .claude/skills.lock.json.
+        run: node scripts/validate-skills.mjs
+      - name: Skill frontmatter validates
+        # Requires Claude Code v2.1.233 or later.
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate .claude/skills
+      - name: Framework doc present
+        # brand-architecture/SKILL.md cites this as its authority. If it disappears,
+        # the skill is citing something that no longer exists.
+        run: test -f docs/Multi-Brand-EDS-Framework.md
+
+  budgets:
+    name: Lighthouse and axe (per brand)
+    runs-on: ubuntu-latest
+    needs: static
+    strategy:
+      fail-fast: false
+      matrix:
+        # One run per brand. A blended average hides a regression in whichever brand
+        # has less traffic, which is exactly the brand nobody is watching.
+        # onboard-brand.mjs appends new brands here.
+        #
+        # driv is repoless: it's a site on its own, not a path prefix, so the preview
+        # URL is the repo/branch preview with no trailing path segment. A second
+        # brand onboarded as its own repoless site will have its OWN site name and
+        # hostname (not derivable from this repo's name), so it needs its own entry
+        # in `include` below rather than falling out of a single URL formula.
+        brand: [driv]
+        include:
+          - brand: driv
+            preview_host: driv--naveenkambam-codeandtheory
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve preview URL
+        id: url
+        run: echo "url=https://${{ github.head_ref }}--${{ matrix.preview_host }}.aem.page/" >> "$GITHUB_OUTPUT"
+      - name: Lighthouse
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: ${{ steps.url.outputs.url }}
+          uploadArtifacts: true
+      - name: axe
+        run: npx @axe-core/cli "${{ steps.url.outputs.url }}" --exit

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+
+  "extraKnownMarketplaces": {
+    "adobe-skills": {
+      "source": { "source": "github", "repo": "adobe/skills" }
+    },
+    "eds-platform": {
+      "source": { "source": "github", "repo": "naveenkambam-codeandtheory/eds-platform-marketplace" }
+    }
+  },
+
+  "enabledPlugins": {
+    "aem-edge-delivery-services@adobe-skills": true,
+    "brand-platform@eds-platform": true
+  },
+
+  "permissions": {
+    "deny": [
+      "Edit(scripts/aem.js)",
+      "Write(scripts/aem.js)"
+    ]
+  }
+}

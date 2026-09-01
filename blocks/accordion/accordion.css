@@ -1,5 +1,5 @@
 .accordion details {
-  border: 1px solid #dadada;
+  border: 1px solid var(--color-border);
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -22,12 +22,12 @@
 }
 
 .accordion details[open] summary {
-  background-color: var(--light-color);
+  background-color: var(--color-surface-raised);
 }
 
 .accordion details summary:focus,
 .accordion details summary:hover {
-  background-color: var(--light-color);
+  background-color: var(--color-surface-raised);
 }
 
 .accordion details summary::-webkit-details-marker {
@@ -56,6 +56,6 @@
 }
 
 .accordion details[open] .accordion-item-body {
-  border-top: 1px solid #dadada;
-  background-color: var(--background-color);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
 }

@@ -1,1 +1,4 @@
+npm run lint
+node scripts/validate-skills.mjs --quiet
+node scripts/validate-tokens.mjs --quiet
 node .husky/pre-commit.mjs

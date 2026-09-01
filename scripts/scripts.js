@@ -17,6 +17,10 @@ import {
   toCamelCase,
 } from './aem.js';
 
+import { getBrand } from './brand.js';
+
+export const NX_ORIGIN = 'https://da.live/nx';
+
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
@@ -139,7 +143,22 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  doc.documentElement.lang = 'en';
+  // Resolving which brand this is costs nothing (registry is imported, not fetched).
+  // Loading that brand's own token file is the one deliberate request below — started
+  // immediately, in parallel with DOM decoration, and awaited only once, right before
+  // content is revealed. This is what keeps every other brand's CSS from ever being
+  // requested on this page: head.html stays brand-agnostic, and only
+  // styles/brands/<this-brand's-key>.css is ever fetched here.
+  const brand = getBrand();
+  const [locale] = brand.locales;
+  doc.documentElement.dataset.brand = brand.key;
+  doc.documentElement.lang = locale;
+  const brandCSS = loadCSS(`${window.hlx.codeBasePath}/styles/brands/${brand.key}.css`)
+    .catch(() => {
+      // eslint-disable-next-line no-console
+      console.error(`Could not load brand styles for "${brand.key}"`);
+    });
+
   decorateTemplateAndTheme();
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;
@@ -147,6 +166,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    await brandCSS;
     doc.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
@@ -228,5 +248,5 @@ loadPage();
 
   const exp = searchParams.get('daexperiment');
   // eslint-disable-next-line import/no-unresolved
-  if (exp) import('https://da.live/nx/public/plugins/exp/exp.js');
+  if (exp) import(`${NX_ORIGIN}/public/plugins/exp/exp.js`);
 }());

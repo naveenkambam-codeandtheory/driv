@@ -1,6 +1,6 @@
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: var(--color-surface-raised);
+  font-size: var(--font-size-xs);
 }
 
 footer .footer > div {

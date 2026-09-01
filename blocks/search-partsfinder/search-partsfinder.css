@@ -11,12 +11,12 @@
  */
 
 .search-partsfinder .search-partsfinder-panel {
-  background-color: var(--dark-color);
+  background-color: var(--color-surface-inverse);
   background-image:
-    radial-gradient(rgb(255 255 255 / 5%) 1px, transparent 1px);
+    radial-gradient(var(--overlay-white-05) 1px, transparent 1px);
   background-size: 6px 6px;
   border-radius: 4px;
-  box-shadow: rgb(0 0 0 / 25%) 0 1px 5px 0;
+  box-shadow: var(--shadow-partsfinder);
   padding: 24px;
   color: #fff;
 }
@@ -27,12 +27,12 @@
   flex-direction: column;
   gap: 12px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgb(255 255 255 / 15%);
+  border-bottom: 1px solid var(--overlay-white-15);
 }
 
 .search-partsfinder .search-partsfinder-title {
   margin: 0;
-  font-family: var(--heading-font-family);
+  font-family: var(--font-heading);
   font-size: 20px;
   font-weight: 600;
   line-height: 1.1;
@@ -62,8 +62,8 @@
   border-bottom: 3px solid transparent;
   border-radius: 0;
   background: transparent;
-  color: rgb(255 255 255 / 70%);
-  font-family: var(--body-font-family);
+  color: var(--overlay-white-70);
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
@@ -82,7 +82,7 @@
 
 .search-partsfinder .search-partsfinder-tabs > li.is-active .search-partsfinder-tab {
   color: #fff;
-  border-bottom-color: var(--brand-red);
+  border-bottom-color: var(--color-accent);
 }
 
 /* controls row: field placeholder + CTA */
@@ -95,7 +95,7 @@
 
 .search-partsfinder .search-partsfinder-field {
   height: 43px;
-  border: 1px solid rgb(255 255 255 / 26%);
+  border: 1px solid var(--overlay-white-26);
   border-radius: 4px;
   background-color: #fff;
 }
@@ -104,11 +104,11 @@
   align-self: flex-start;
   margin: 0;
   padding: 0.7em 1.6em;
-  border: 2px solid var(--brand-red);
+  border: 2px solid var(--color-accent);
   border-radius: 0;
-  background-color: var(--brand-red);
+  background-color: var(--color-accent);
   color: #fff;
-  font-family: var(--heading-font-family);
+  font-family: var(--font-heading);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.25;
@@ -120,8 +120,8 @@
 
 .search-partsfinder .search-partsfinder-cta:hover,
 .search-partsfinder .search-partsfinder-cta:focus {
-  background-color: #a30f28;
-  border-color: #a30f28;
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
   color: #fff;
 }
 

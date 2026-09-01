@@ -1,0 +1,159 @@
+:root[data-brand='driv'] {
+  /* ---- colour: real values — moved here from styles/brand.css (DRiV Parts brand) ---- */
+  --color-accent:          #c41230;   /* brand red: primary CTA buttons, heading emphasis */
+  --color-accent-hover:    #a30f28;
+  --color-accent-contrast: #fff;      /* button text on the accent background */
+  --color-link:            #545454;   /* plain inline links, secondary buttons — deliberately
+                                          distinct from the brand-red CTA colour */
+  --color-link-hover:      #164991;
+  --color-text:            #3a3a3a;
+  --color-text-muted:      #999;      /* real: disabled button text, styles.css */
+  --color-surface:         #fff;
+  --color-surface-raised:  #f2f2f2;
+  --color-surface-inverse: #3a3a3a;   /* dark section background */
+  --color-border:          #dadada;   /* real: hairline border, identical across 8 boilerplate
+                                          blocks (accordion, cards, search, table, tabs) */
+  --color-focus:           var(--color-link);   /* real: form input focus outline */
+  --color-danger:          firebrick;            /* form validation text, blocks/form/form.css */
+  --color-text-inverse:    #fff;                 /* real: text colour inside a dark section */
+  --color-text-inverse-muted: #e6e6e6;  /* real: drivparts.com sublabel text on a dark surface,
+                                            blocks/form-locator */
+
+  /* ---- colour: new — no success state exists today; placeholder ---- */
+  --color-success: seagreen;
+
+  /* ---- colour: real, extracted from drivparts.com source computed styles — the ZIP-locator
+     input field's own border/text/placeholder, distinct from the shared --color-* roles above.
+     Kept as its own values rather than approximated onto --color-border/-text/-text-muted,
+     since those are close but not identical and this file's source values are documented as
+     verified against production. ---- */
+  --input-border:      rgb(204 204 204);
+  --input-text:         rgb(62 62 62);
+  --input-placeholder:  rgb(120 120 120);
+
+  /* ---- colour: generic dark-scrim overlay used by the original boilerplate (carousel nav
+     controls, modal backdrop) — not brand-specific, just tokenized so component CSS carries
+     no raw rgba() calls. ---- */
+  --overlay-strong: rgba(19 19 19 / 75%);
+  --overlay-soft:   rgba(19 19 19 / 25%);
+
+  /* ---- colour: real, search-partsfinder's frosted-white-on-black treatment (a self-contained
+     dark panel echoing the DRiV homepage "Parts Finder" widget) ---- */
+  --overlay-white-05: rgb(255 255 255 / 5%);
+  --overlay-white-15: rgb(255 255 255 / 15%);
+  --overlay-white-26: rgb(255 255 255 / 26%);
+  --overlay-white-70: rgb(255 255 255 / 70%);
+  --shadow-partsfinder: rgb(0 0 0 / 25%) 0 1px 5px 0;
+
+  /* ---- colour: extension, not part of the contract — carried over from styles/brand.css's
+     --frame-color. Not referenced by any block today; keep it available since it was
+     declared deliberately, not dropped silently. ---- */
+  --color-frame: #3a3a3a;
+
+  /* ---- type: real values — moved here from styles/brand.css ---- */
+  --font-heading: 'Barlow Semi Condensed', 'din-medium', sans-serif;
+  --font-body:    'Barlow', 'din-regular', sans-serif;
+
+  /* flat body/UI copy scale — same value at every breakpoint (tabs, footer, table,
+     header, form, search, body, p, code/pre all read from here) */
+  --font-size-xs: 14px;
+  --font-size-s:  16px;
+  --font-size-m:  18px;
+
+  /* responsive heading scale, independent of the flat scale above even though a couple
+     of steps share a pixel value — h1-h6 and the header nav-brand read from here.
+     Mobile-first: these are the mobile values; >=900px overrides below. */
+  --font-size-heading-xs:  16px;   /* h6 */
+  --font-size-heading-s:   18px;   /* h5, header .nav-brand */
+  --font-size-heading-m:   20px;   /* h4 */
+  --font-size-heading-l:   24px;   /* h3 */
+  --font-size-heading-xl:  28px;   /* h2 */
+  --font-size-heading-xxl: 36px;   /* h1 */
+  --line-height-tight: 1.1;    /* real: headings, styles.css */
+  --line-height-base:  1.6;    /* real: body, styles.css */
+
+  /* ---- type: new — no monospace or loose line-height in use today ---- */
+  --font-mono: ui-monospace, 'SFMono-Regular', menlo, consolas, monospace;
+  --line-height-loose: 1.8;
+
+  /* ---- space: real — read off actual margin/padding values already in use ---- */
+  --space-3:  12px;               /* button margin, styles.css */
+  --space-4:  16px;               /* section/form padding */
+  --space-6:  24px;               /* section gutter <900px, quote margin */
+  --space-8:  32px;               /* section gutter >=900px */
+  --space-12: 40px;               /* section margin/padding; = --section-padding */
+  --space-section: var(--space-12);
+  --space-gutter:  var(--space-6);
+
+  /* ---- space: new — no smaller/larger step exists yet; standard 4px-scale placeholders ---- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-16: 64px;
+
+  /* ---- shape: real — read off existing border-radius values across blocks/ ---- */
+  --radius-none: 0;               /* buttons, tabs, modal, header */
+  --radius-s:    2px;              /* header nav, modal */
+  --radius-m:    4px;              /* form input, search input */
+  --radius-l:    20px;             /* embed close button */
+
+  /* ---- shape: normalised — used for the few remaining circular elements (avatars,
+     carousel dots); DRiV's own CTA buttons are square (--radius-none), unlike the old
+     boilerplate's pill shape ---- */
+  --radius-full: 999px;
+
+  /* ---- shape: new — no box-shadow used anywhere in driv today ---- */
+  --shadow-s: 0 1px 2px rgb(0 0 0 / 8%);
+  --shadow-m: 0 4px 12px rgb(0 0 0 / 12%);
+  --shadow-l: 0 12px 32px rgb(0 0 0 / 16%);
+
+  /* ---- layout: real — = --content-max-width from styles/brand.css ---- */
+  --layout-max-width:     1200px;
+  --layout-content-width: 900px;
+
+  /* ---- motion: real duration — every transition in blocks/ already uses 0.2s and the
+     implicit (unspecified) easing function, which is `ease` ---- */
+  --duration-fast:    0.2s;
+  --easing-standard:  ease;
+
+  /* ---- motion: new — no second or third duration tier exists yet ---- */
+  --duration-base: 0.3s;
+  --duration-slow: 0.5s;
+
+  /* ---- brand identity: new — no per-brand assets exist yet; icons/driv/ needs real files
+     from the design team before these resolve to anything but a broken image ---- */
+  --brand-logo:         url('/icons/driv/logo.svg');
+  --brand-logo-inverse: url('/icons/driv/logo-inverse.svg');
+  --brand-favicon:      url('/favicon.ico');    /* real: existing root favicon, until driv gets its own */
+
+  /* ---- component-level: not part of the required contract. These are the specific
+     structural choices this brand makes for shared elements (heading case/weight, button
+     shape) — kept here, as values, so styles.css stays generic and a future brand can
+     override just these without touching shared CSS. ---- */
+  --heading-weight:    700;
+  --heading-transform: uppercase;
+
+  /* h4 is this brand's one exception: no uppercase/red emphasis */
+  --heading-h4-weight:    500;
+  --heading-h4-transform: none;
+  --heading-h4-color:     var(--color-text);
+
+  /* button shape/case: DRiV uses square CTAs, not a pill shape */
+  --button-radius:    var(--radius-none);
+  --button-weight:    600;
+  --button-transform: uppercase;
+  --button-tracking:  0.03em;
+}
+
+@media (width >= 900px) {
+  :root[data-brand='driv'] {
+    /* ---- type: real values — the desktop step of the responsive heading scale above.
+       Note this isn't simply "smaller than mobile": xl and xxl shrink on desktop, while
+       xs/s/m/l are actually larger on mobile. That's the real, committed design. ---- */
+    --font-size-heading-xs:  14px;
+    --font-size-heading-s:   16px;
+    --font-size-heading-m:   18px;
+    --font-size-heading-l:   22px;
+    --font-size-heading-xl:  32px;
+    --font-size-heading-xxl: 36px;
+  }
+}

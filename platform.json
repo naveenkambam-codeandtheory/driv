@@ -1,0 +1,9 @@
+{
+  "platform": "aem-eds",
+  "conventions": {
+    "forkPrefix":       "{brandKey}-",
+    "brandAttribute":   "data-brand",
+    "allowedLiteralColors": ["#fff", "#000"]
+  },
+  "budgets": { "forkRatioTarget": 15, "forkRatioMax": 20, "brandTokenFileKb": 8 }
+}
