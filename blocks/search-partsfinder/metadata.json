@@ -1,0 +1,38 @@
+{
+  "variantName": "search-partsfinder",
+  "baseBlock": "search",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.drivparts.com/",
+    "originPage": "DRiV homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "purpose": "parts-finder",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "text + tabs + dependent dropdowns + submit",
+    "buttonCount": 6,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "product/parts finder widgets",
+      "catalog lookup landing areas",
+      "search-driven homepages"
+    ],
+    "notSuitableFor": [
+      "simple inline text",
+      "image gallery sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,157 @@
+/* Parts Finder block
+ *
+ * Echoes the DRiV homepage "Parts Finder" region: on the source the widget
+ * is a white card sitting on a black perforated page background. Here the
+ * block is rendered as a self-contained dark panel with white/red accents,
+ * an underlined active tab, and a dark CTA — matching the source's tab
+ * styling (14px uppercase tabs, 3px brand-red active underline) and CTA.
+ *
+ * Values extracted from source computed styles
+ * (migration-work/search-partsfinder-extracted.css).
+ */
+
+.search-partsfinder .search-partsfinder-panel {
+  background-color: var(--dark-color);
+  background-image:
+    radial-gradient(rgb(255 255 255 / 5%) 1px, transparent 1px);
+  background-size: 6px 6px;
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 25%) 0 1px 5px 0;
+  padding: 24px;
+  color: #fff;
+}
+
+/* header: title + tabs */
+.search-partsfinder .search-partsfinder-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgb(255 255 255 / 15%);
+}
+
+.search-partsfinder .search-partsfinder-title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+/* tabs */
+.search-partsfinder ul.search-partsfinder-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.search-partsfinder ul.search-partsfinder-tabs > li {
+  margin: 0;
+}
+
+.search-partsfinder .search-partsfinder-tab {
+  margin: 0;
+  padding: 0 0 6px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: rgb(255 255 255 / 70%);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.search-partsfinder .search-partsfinder-tab:hover,
+.search-partsfinder .search-partsfinder-tab:focus {
+  color: #fff;
+  background: transparent;
+  border-color: transparent;
+}
+
+.search-partsfinder .search-partsfinder-tabs > li.is-active .search-partsfinder-tab {
+  color: #fff;
+  border-bottom-color: var(--brand-red);
+}
+
+/* controls row: field placeholder + CTA */
+.search-partsfinder .search-partsfinder-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.search-partsfinder .search-partsfinder-field {
+  height: 43px;
+  border: 1px solid rgb(255 255 255 / 26%);
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.search-partsfinder .search-partsfinder-cta {
+  align-self: flex-start;
+  margin: 0;
+  padding: 0.7em 1.6em;
+  border: 2px solid var(--brand-red);
+  border-radius: 0;
+  background-color: var(--brand-red);
+  color: #fff;
+  font-family: var(--heading-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.search-partsfinder .search-partsfinder-cta:hover,
+.search-partsfinder .search-partsfinder-cta:focus {
+  background-color: #a30f28;
+  border-color: #a30f28;
+  color: #fff;
+}
+
+@media (width >= 900px) {
+  .search-partsfinder .search-partsfinder-panel {
+    padding: 30px 32px;
+  }
+
+  .search-partsfinder .search-partsfinder-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .search-partsfinder .search-partsfinder-title {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+
+  .search-partsfinder ul.search-partsfinder-tabs {
+    justify-content: flex-end;
+  }
+
+  .search-partsfinder .search-partsfinder-controls {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .search-partsfinder .search-partsfinder-field {
+    flex: 1;
+  }
+}

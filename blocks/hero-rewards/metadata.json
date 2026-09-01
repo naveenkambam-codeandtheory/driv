@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-rewards",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.drivparts.com/",
+    "originPage": "DRiV homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "rewards-banner",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background image + heading + paragraph + CTA + overlay image",
+    "buttonCount": 1,
+    "imageCount": 2
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "full-width promotional banners with dark background photo",
+      "loyalty/rewards enroll banners",
+      "campaign call-to-action strips"
+    ],
+    "notSuitableFor": [
+      "compact promo cards (use hero-promo)",
+      "plain text sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

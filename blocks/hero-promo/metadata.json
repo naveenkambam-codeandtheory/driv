@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-promo",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.drivparts.com/",
+    "originPage": "DRiV homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "purpose": "promo-card",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + paragraph + CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "promotional callout cards",
+      "enroll/join CTAs with background image",
+      "compact hero promos within a page"
+    ],
+    "notSuitableFor": [
+      "full-width edge-to-edge banners (use hero-rewards)",
+      "plain text sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

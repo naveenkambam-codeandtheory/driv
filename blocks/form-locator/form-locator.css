@@ -1,0 +1,149 @@
+/* Block: form-locator — "Where To Buy" ZIP/postal-code locator bar.
+   Values extracted from drivparts.com source computed styles. */
+
+/* Full-width dark bar: override the section's max-width wrapper. */
+.form-locator-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.form-locator.block {
+  background-color: var(--dark-color); /* #3a3a3a */
+  color: #fff;
+}
+
+/* Bar layout — mobile-first (stacked), horizontal on desktop. */
+.form-locator .form-locator-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+/* Left group: map-marker icon + heading + ZIP/Postal Code sublabel */
+.form-locator .form-locator-heading {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* icon margin-right in source */
+}
+
+.form-locator .form-locator-icon {
+  display: inline-flex;
+  width: 26px;
+  height: 32px;
+  color: var(--brand-red); /* rgb(196, 18, 48) */
+  flex: 0 0 auto;
+}
+
+.form-locator .form-locator-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.form-locator .form-locator-heading h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.form-locator .form-locator-heading label {
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #e6e6e6;
+  text-transform: none;
+}
+
+/* Field: ZIP input */
+.form-locator .form-locator-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 auto;
+}
+
+.form-locator .form-locator-field input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 43px;
+  padding: 1px 2px 1px 15px;
+  border: 1px solid rgb(204 204 204);
+  border-radius: 5px;
+  background-color: #fff;
+  color: rgb(62 62 62);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+}
+
+.form-locator .form-locator-field input::placeholder {
+  color: rgb(120 120 120);
+}
+
+/* Red Search submit button (border-radius 0, not uppercase, weight 400). */
+.form-locator .form-locator-submit {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  margin: 0;
+  padding: 0 40px;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--brand-red); /* rgb(196, 18, 48) */
+  color: #fff;
+  font-family: var(--heading-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.form-locator .form-locator-submit::after {
+  content: '';
+  width: 14px;
+  height: 12px;
+  background-color: currentcolor;
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4z"/></svg>') no-repeat center / contain;
+}
+
+.form-locator .form-locator-submit:hover,
+.form-locator .form-locator-submit:focus {
+  background-color: #a30f28;
+}
+
+/* Desktop — single horizontal bar. */
+@media (width >= 900px) {
+  .form-locator .form-locator-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px 30px;
+  }
+
+  .form-locator .form-locator-heading {
+    flex: 0 0 auto;
+  }
+
+  .form-locator .form-locator-field {
+    flex: 1 1 auto;
+    max-width: 460px;
+  }
+
+  .form-locator .form-locator-submit {
+    flex: 0 0 auto;
+  }
+}

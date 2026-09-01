@@ -1,0 +1,79 @@
+/* hero-rewards — full-width dark promotional "Join OVERDRiV" rewards banner.
+   Source: a single baked background photo (dark garage) with white artwork,
+   ~1230x300 desktop (≈4:1), full-width, entirely clickable, sitting in a grey
+   section. Our content carries a background/placeholder image + a CTA link, so
+   the picture is used as a covering background layer with a dark fallback and
+   the brand-red CTA overlaid. */
+
+/* Break out of the section's 1200px max-width — banner is full-bleed. */
+.hero-rewards-container .hero-rewards-wrapper {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-rewards {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 200px;
+  padding: 32px 24px;
+  overflow: hidden;
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+/* Picture becomes the covering background layer (baked banner artwork). */
+.hero-rewards > div > div > p:first-child {
+  margin: 0;
+}
+
+.hero-rewards picture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+.hero-rewards picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Row + content cell sit above the background layer. */
+.hero-rewards > div {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.hero-rewards > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* CTA — prominent brand-red button. Inherits global a.button (red, uppercase,
+   Barlow Semi Condensed). Scale it up to match the banner's prominent pill CTA. */
+.hero-rewards .button-container {
+  margin: 0;
+}
+
+.hero-rewards a.button:any-link {
+  margin: 0;
+  padding: 0.75em 2em;
+  font-size: var(--body-font-size-m);
+}
+
+@media (width >= 900px) {
+  .hero-rewards {
+    min-height: 300px;
+    padding: 40px 64px;
+  }
+}

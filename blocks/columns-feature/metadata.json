@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-feature",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.drivparts.com/",
+    "originPage": "DRiV homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "feature",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image | heading + subheading + paragraph + CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "image + text feature modules",
+      "side-by-side promo/introduction blocks",
+      "two-column informational layouts"
+    ],
+    "notSuitableFor": [
+      "grids of repeating items (use cards)",
+      "full-width banners (use hero variants)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

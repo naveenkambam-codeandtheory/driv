@@ -1,0 +1,38 @@
+{
+  "variantName": "form-signin",
+  "baseBlock": "form",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.drivparts.com/",
+    "originPage": "DRiV homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "sign-in",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "email input + password input + submit + register CTA",
+    "buttonCount": 2,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "account sign-in forms",
+      "login panels on landing pages",
+      "credential capture forms"
+    ],
+    "notSuitableFor": [
+      "location/ZIP lookup (use form-locator)",
+      "long multi-step forms"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "variantName": "form-locator",
+  "baseBlock": "form",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.drivparts.com/",
+    "originPage": "DRiV homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "compact",
+    "purpose": "where-to-buy-locator",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + ZIP/postal input + search submit",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "dealer / where-to-buy locators",
+      "ZIP/postal code lookups",
+      "single-field search bars on a dark bar"
+    ],
+    "notSuitableFor": [
+      "credential/sign-in forms (use form-signin)",
+      "long multi-field forms"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}
