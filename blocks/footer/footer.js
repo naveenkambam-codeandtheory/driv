@@ -1,20 +1,37 @@
-import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+// MOOG footer: primary links row + legal bar. Content-first — all copy/links/images
+// come from /content/footer.plain.html. This module fetches that fragment and renders it.
 
-/**
- * loads and decorates the footer
- * @param {Element} block The footer block element
- */
 export default async function decorate(block) {
-  // load footer as fragment
-  const footerMeta = getMetadata('footer');
-  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  const fragment = await loadFragment(footerPath);
+  // Metadata-independent dual-fetch: /content first (localhost), then root (DA/EDS prod).
+  let resp = await fetch('/content/footer.plain.html');
+  if (!resp.ok) resp = await fetch('/footer.plain.html');
+  if (!resp.ok) return;
+  const html = await resp.text();
 
-  // decorate footer DOM
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  const sections = [...tmp.children];
+
   block.textContent = '';
   const footer = document.createElement('div');
-  while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
+  footer.className = 'footer-inner';
+
+  // Section 0 -> primary links + MOOG logo; Section 1 -> legal bar + DRiV logo.
+  const [primary, legal] = sections;
+
+  if (primary) {
+    const top = document.createElement('div');
+    top.className = 'footer-primary';
+    top.append(...primary.childNodes);
+    footer.append(top);
+  }
+
+  if (legal) {
+    const bottom = document.createElement('div');
+    bottom.className = 'footer-legal';
+    bottom.append(...legal.childNodes);
+    footer.append(bottom);
+  }
 
   block.append(footer);
 }
