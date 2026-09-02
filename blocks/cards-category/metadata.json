@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-category",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.moogparts.com/",
+    "originPage": "MOOG homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "blue",
+    "density": "compact",
+    "purpose": "category",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image tile + title + CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "product-category navigation tile rows (e.g. Steering, Suspension)",
+      "image tiles with a centered title and a 'See Products' CTA",
+      "4-up category or department promos on a colored section"
+    ],
+    "notSuitableFor": [
+      "editorial article teaser grids (use cards-article)",
+      "side-by-side feature modules (use columns variants)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

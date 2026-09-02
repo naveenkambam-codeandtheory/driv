@@ -1,0 +1,120 @@
+/* cards-article — PartsMatter article cards (MOOG).
+   3-up grid on a DARK panel: full-width top image, bright-blue Roboto heading,
+   light body copy, bright-blue italic "Read More" text link.
+   Values extracted from source computed styles (moogparts.com .ledes block). */
+
+/* Dark panel so the light text reads on it (the section is shared with other
+   blocks, so the block carries its own dark background rather than the section). */
+.cards-article {
+  background-color: var(--color-surface-inverse);
+  padding: 32px 24px;
+}
+
+.cards-article > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.cards-article > ul > li {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: 0;
+}
+
+/* Image — full-width at top of the card */
+.cards-article .cards-article-card-image {
+  line-height: 0;
+  margin: 0;
+}
+
+.cards-article .cards-article-card-image p {
+  margin: 0;
+}
+
+.cards-article > ul > li img {
+  width: 100%;
+  aspect-ratio: 420 / 187;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text body */
+.cards-article .cards-article-card-body {
+  margin: 0;
+  padding: 16px 0 0;
+}
+
+/* Heading — Roboto 900 italic uppercase, bright blue */
+.cards-article .cards-article-card-body h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 25px;
+  line-height: 30px;
+  text-transform: uppercase;
+  color: var(--color-accent-hover);
+}
+
+.cards-article .cards-article-card-body h3 a:any-link {
+  color: var(--color-accent-hover);
+  text-decoration: none;
+}
+
+/* Body copy — Barlow, light on dark */
+.cards-article .cards-article-card-body p {
+  margin: 8px 0 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.625;
+  color: var(--color-text-inverse);
+}
+
+/* "Read More" — reset the EDS auto-button back to a plain bright-blue text link */
+.cards-article .cards-article-card-body p.button-container {
+  margin: 16px 0 0;
+}
+
+main .cards-article a.button:any-link {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--color-accent-hover);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: 1px;
+  text-transform: none;
+  text-decoration: none;
+  white-space: normal;
+}
+
+main .cards-article a.button:hover,
+main .cards-article a.button:focus {
+  background-color: transparent;
+  border: 0;
+  color: var(--color-text-inverse);
+  text-decoration: none;
+}
+
+/* Desktop — 3-up grid */
+@media (width >= 900px) {
+  .cards-article {
+    padding: 48px 32px;
+  }
+
+  .cards-article > ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 38px;
+  }
+}

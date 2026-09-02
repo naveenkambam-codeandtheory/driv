@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-promo",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.moogparts.com/",
+    "originPage": "MOOG homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "blue",
+    "density": "spacious",
+    "purpose": "feature",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image | heading + paragraph + CTA(s)",
+    "buttonCount": 2,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "image + text feature modules on a colored (blue) section",
+      "side-by-side promo/introduction blocks with alternating image side",
+      "modules with one or two CTAs beside an image"
+    ],
+    "notSuitableFor": [
+      "light-background feature modules (use columns-feature)",
+      "grids of repeating items (use cards variants)",
+      "full-width background-image banners (use hero variants)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 2,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

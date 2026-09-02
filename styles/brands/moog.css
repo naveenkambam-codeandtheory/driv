@@ -26,6 +26,19 @@
   --color-danger:          #ee1b2e;  /* red, used with a 3px border on alert states */
   --color-success:         #55b842;  /* green, used with a 3px border on success states */
 
+  /* --- colour: brand-specific extras beyond the shared contract roles.
+     These carry values the contract has no semantic slot for but that Moog's own
+     components genuinely use; kept here (not hardcoded in blocks) so a fork isn't
+     needed and other brands can alias/override them. Same pattern as driv's
+     --color-frame / --input-* extras. --- */
+  --color-cta-secondary:         #f5e944;  /* real: yellow secondary CTA fill (View Bulletins, See Products) */
+  --color-cta-secondary-hover:   #e6d800;  /* darker yellow on hover */
+  --color-cta-secondary-text:    var(--color-accent);  /* blue label on the yellow fill */
+  --color-scrim:                 rgb(0 0 0 / 70%);      /* real: dark hero photo overlay */
+  --color-tile-backdrop:         #001a54;  /* deep blue behind category tiles (darker than accent) */
+  --color-tile-scrim:            rgb(0 26 84 / 25%);    /* subtle tile image darkening for title legibility */
+  --color-surface-deep:          #1c1c1c;  /* hero masthead solid fallback when no photo */
+
   /* --- colour: no distinct "plain link" colour found separate from the accent blue
      (unlike DRiV) — aliased rather than inventing a split the evidence doesn't show --- */
   --color-link:       var(--color-accent);

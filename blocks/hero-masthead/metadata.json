@@ -1,0 +1,39 @@
+{
+  "variantName": "hero-masthead",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.moogparts.com/",
+    "originPage": "MOOG homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "masthead",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background image + heading + paragraph + CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "full-width editorial mastheads with a background photo",
+      "brand/section intro banners with heading + paragraph + single CTA",
+      "video-series or campaign intro banners"
+    ],
+    "notSuitableFor": [
+      "compact promo callout cards (use hero-promo)",
+      "loyalty/rewards banners with an overlay logo (use hero-rewards)",
+      "plain text sections (use default content)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 2,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}
