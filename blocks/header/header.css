@@ -246,6 +246,8 @@ header #nav {
   .nav-sections > ul > li {
     position: relative;
     border-top: 0;
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 
   .nav-sections > ul > li > a {
