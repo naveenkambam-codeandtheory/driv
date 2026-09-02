@@ -22,5 +22,31 @@ export default {
       features: {},
       endpoints: {},
     },
+    moog: {
+      key: 'moog',
+      name: 'Moog',
+      pathPrefix: '/',
+      hosts: [
+        'main--moog--naveenkambam-codeandtheory.aem.page',
+        'main--moog--naveenkambam-codeandtheory.aem.live',
+      ],
+      locales: ['en-us'],
+      indexPath: '/query-index.json',
+      features: {},
+      endpoints: {},
+    },
+    abex: {
+      key: 'abex',
+      name: 'Abex',
+      pathPrefix: '/abex',
+      hosts: [
+        'main--abex--naveenkambam-codeandtheory.aem.page',
+        'main--abex--naveenkambam-codeandtheory.aem.live',
+      ],
+      locales: ['en-us'],
+      indexPath: '/abex/query-index.json',
+      features: {},
+      endpoints: {},
+    },
   },
 };

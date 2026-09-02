@@ -57,10 +57,12 @@ jobs:
         # brand onboarded as its own repoless site will have its OWN site name and
         # hostname (not derivable from this repo's name), so it needs its own entry
         # in `include` below rather than falling out of a single URL formula.
-        brand: [driv]
+        brand: [driv, moog, abex]
         include:
           - brand: driv
             preview_host: driv--naveenkambam-codeandtheory
+          - brand: moog
+            preview_host: moog--naveenkambam-codeandtheory
     steps:
       - uses: actions/checkout@v4
       - name: Resolve preview URL

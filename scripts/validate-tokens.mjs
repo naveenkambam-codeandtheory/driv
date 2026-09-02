@@ -16,8 +16,12 @@
  * Exit:   0 clean, 1 violations found.
  */
 
-import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
-import { join, basename, extname, relative } from 'node:path';
+import {
+  readFileSync, readdirSync, existsSync, statSync,
+} from 'node:fs';
+import {
+  join, basename, extname, relative,
+} from 'node:path';
 
 const args = process.argv.slice(2);
 const ROOT = args.includes('--root') ? args[args.indexOf('--root') + 1] : process.cwd();
@@ -32,6 +36,7 @@ const DEFAULTS = {
     brandTokens: 'styles/brands',
     tokenContract: 'styles/tokens/contract.json',
     registry: 'brands.json',
+    registryModule: 'scripts/brands.js',
   },
   conventions: {
     forkPrefix: '{brandKey}-',
@@ -55,6 +60,7 @@ const CONTRACT = join(ROOT, cfg.paths.tokenContract);
 const BRAND_DIR = join(ROOT, cfg.paths.brandTokens);
 const COMPONENT_DIR = join(ROOT, cfg.paths.components);
 const REGISTRY = join(ROOT, cfg.paths.registry);
+const REGISTRY_MODULE = join(ROOT, cfg.paths.registryModule);
 
 const errors = [];
 const warnings = [];
@@ -69,8 +75,7 @@ const decomment = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '');
 function definedTokens(css) {
   const out = new Map();
   const re = /(^|[;{\s])(--[a-z0-9-]+)\s*:([^;}]*)/gi;
-  let m;
-  while ((m = re.exec(css)) !== null) out.set(m[2], m[3].trim());
+  for (const m of css.matchAll(re)) out.set(m[2], m[3].trim());
   return out;
 }
 
@@ -118,6 +123,29 @@ if (brandKeys) {
     .forEach((k) => warn(`${cfg.paths.brandTokens}/${k}.css`, 'token file has no matching entry in the registry'));
 }
 
+// brand.js imports the registry as a module instead of fetching brands.json, to avoid a
+// network round trip before first paint (step 10 of the setup guide). That means it can
+// silently drift from brands.json — a brand missing here resolves to the default brand
+// instead of erroring, which is a much quieter failure than a 404. Only checked if the
+// project actually has this file; not every project uses the module pattern.
+if (brandKeys && existsSync(REGISTRY_MODULE)) {
+  try {
+    const mod = await import(`file://${REGISTRY_MODULE}`);
+    const moduleKeys = Object.keys(mod.default?.brands ?? {});
+    brandKeys
+      .filter((k) => !moduleKeys.includes(k))
+      .forEach((k) => fail(
+        cfg.paths.registryModule,
+        `brand "${k}" is in ${cfg.paths.registry} but missing here — brand.js would silently resolve it to the default brand instead`,
+      ));
+    moduleKeys
+      .filter((k) => !brandKeys.includes(k))
+      .forEach((k) => warn(cfg.paths.registryModule, `brand "${k}" has no matching entry in ${cfg.paths.registry} — stale?`));
+  } catch (e) {
+    fail(cfg.paths.registryModule, `could not load as a module: ${e.message}`);
+  }
+}
+
 // Selectors a brand file may contain. Anything else is styling, which means the
 // "token file" has quietly become a fork.
 const ALLOWED_SELECTOR = /^(:root(\[[a-z-]+=['"][a-z0-9-]+['"]\])?|\[[a-z-]+=['"][a-z0-9-]+['"]\]|@media[^{]*|@supports[^{]*|@font-face|html|:where\([^)]*\))$/i;
@@ -161,8 +189,7 @@ const HEX = /#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})\b/gi;
 const FUNC_COLOR = /\b(?:rgba?|hsla?|oklch|lab|color-mix)\s*\(/gi;
 const FONT_DECL = /font-family\s*:\s*([^;}]+)/gi;
 
-const literalFontStacks = (css) =>
-  [...css.matchAll(FONT_DECL)].map((m) => m[1].trim()).filter((v) => !v.startsWith('var('));
+const literalFontStacks = (css) => [...css.matchAll(FONT_DECL)].map((m) => m[1].trim()).filter((v) => !v.startsWith('var('));
 
 const forkPrefixes = (brandKeys ?? []).map((k) => cfg.conventions.forkPrefix.replace('{brandKey}', k));
 const isFork = (p) => forkPrefixes.some((pre) => basename(p).startsWith(pre));
@@ -203,9 +230,7 @@ const hidden = { conditionals: [], scoped: [] };
 if (brandKeys?.length) {
   const keyAlternation = brandKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
   // A brand key appearing in a comparison, switch case, or object lookup in shared code.
-  const CONDITIONAL = new RegExp(
-    `(?:===?|!==?|case\\s+|\\[)\\s*['"\`](${keyAlternation})['"\`]`, 'g',
-  );
+  const CONDITIONAL = new RegExp(`(?:===?|!==?|case\\s+|\\[)\\s*['"\`](${keyAlternation})['"\`]`, 'g');
 
   for (const file of walk(COMPONENT_DIR, '.js')) {
     if (isFork(file)) continue;
@@ -214,9 +239,13 @@ if (brandKeys?.length) {
       .replace(/^\s*\/\/.*$/gm, '');
     const hits = [...js.matchAll(CONDITIONAL)].map((m) => m[1]);
     if (hits.length) {
-      hidden.conditionals.push({ file: relative(ROOT, file), keys: [...new Set(hits)], count: hits.length });
-      fail(relative(ROOT, file),
-        `${hits.length} brand-name conditional(s) on ${[...new Set(hits)].join(', ')} — branch on a capability flag instead`);
+      hidden.conditionals.push({
+        file: relative(ROOT, file), keys: [...new Set(hits)], count: hits.length,
+      });
+      fail(
+        relative(ROOT, file),
+        `${hits.length} brand-name conditional(s) on ${[...new Set(hits)].join(', ')} — branch on a capability flag instead`,
+      );
     }
   }
 
@@ -231,10 +260,14 @@ if (brandKeys?.length) {
     const scoped = (css.match(SCOPED) ?? []).length;
     if (!scoped) continue;
     const pct = rules ? (scoped / rules) * 100 : 0;
-    hidden.scoped.push({ file: relative(ROOT, file), scoped, rules, pct });
+    hidden.scoped.push({
+      file: relative(ROOT, file), scoped, rules, pct,
+    });
     if (pct > cap) {
-      fail(relative(ROOT, file),
-        `${scoped}/${rules} rules are brand-scoped (${pct.toFixed(0)}%, cap ${cap}%) — promote to component tokens or declare the fork`);
+      fail(
+        relative(ROOT, file),
+        `${scoped}/${rules} rules are brand-scoped (${pct.toFixed(0)}%, cap ${cap}%) — promote to component tokens or declare the fork`,
+      );
     } else if (scoped > 2) {
       warn(relative(ROOT, file), `${scoped} brand-scoped rules — check whether a component token would generalise them`);
     }
@@ -245,7 +278,8 @@ if (brandKeys?.length) {
 
 let forkStats = null;
 if (existsSync(COMPONENT_DIR) && brandKeys?.length) {
-  const components = readdirSync(COMPONENT_DIR).filter((d) => statSync(join(COMPONENT_DIR, d)).isDirectory());
+  const components = readdirSync(COMPONENT_DIR)
+    .filter((d) => statSync(join(COMPONENT_DIR, d)).isDirectory());
   const forks = components.filter((b) => forkPrefixes.some((p) => b.startsWith(p)));
   const ratio = components.length ? (forks.length / components.length) * 100 : 0;
   forkStats = { total: components.length, forks, ratio };

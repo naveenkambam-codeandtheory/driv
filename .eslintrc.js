@@ -16,4 +16,17 @@ module.exports = {
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'import/no-cycle': 0, // Allow modules to use each other
   },
+  overrides: [
+    {
+      // Node CLI/build scripts, not browser runtime code: console output and for-of
+      // loops are the normal idiom here, not a smell.
+      files: ['scripts/*.mjs'],
+      env: { node: true, browser: false },
+      rules: {
+        'no-console': 'off',
+        'no-continue': 'off',
+        'no-restricted-syntax': 'off',
+      },
+    },
+  ],
 };

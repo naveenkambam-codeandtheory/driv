@@ -1,0 +1,113 @@
+/*
+ * Moog — brand tokens
+ *
+ * Custom property definitions ONLY. No element or class selectors, no layout rules, no
+ * component styling. A selector here means the difference belongs in a component token,
+ * or the component has genuinely diverged and needs an ADR.
+ *
+ * Values below marked "real" were extracted from moogparts.com's own served CSS
+ * (frequency-ranked selector usage, not a guess) — same method used for driv's brand
+ * file. Values marked "new" have no equivalent on the live site; they're reasonable
+ * defaults, not verified against anything, and should be revisited with the design team.
+ */
+
+:root[data-brand='moog'] {
+  /* --- colour: real, extracted from moogparts.com's served CSS --- */
+  --color-accent:          #0032a0;  /* dominant blue — background and text, site-wide */
+  --color-accent-hover:    #0068ff;  /* brighter blue, same interactive contexts */
+  --color-accent-contrast: #fff;
+  --color-text:            #333;
+  --color-text-muted:      #808080;
+  --color-text-inverse:    #fff;
+  --color-surface:         #fff;
+  --color-surface-raised:  #efefef;
+  --color-surface-inverse: #000;
+  --color-border:          #c2c2c2;
+  --color-danger:          #ee1b2e;  /* red, used with a 3px border on alert states */
+  --color-success:         #55b842;  /* green, used with a 3px border on success states */
+
+  /* --- colour: no distinct "plain link" colour found separate from the accent blue
+     (unlike DRiV) — aliased rather than inventing a split the evidence doesn't show --- */
+  --color-link:       var(--color-accent);
+  --color-link-hover:  var(--color-accent-hover);
+  --color-focus:       var(--color-accent);
+
+  /* --- type: real, extracted from moogparts.com's served CSS --- */
+  --font-heading: 'blenderpro-bold', sans-serif;
+  --font-body:    'roboto-regular', sans-serif;
+
+  /* flat body/UI copy scale */
+  --font-size-xs: 14px;
+  --font-size-s:  16px;
+  --font-size-m:  18px;
+
+  /* heading scale — flat, not responsive: nothing in the extracted CSS indicated Moog's
+     site changes heading sizes by breakpoint the way DRiV's real data did, so this brand
+     genuinely doesn't need the mobile/desktop split styles.css's generic rules allow for */
+  --font-size-heading-xs:  20px;
+  --font-size-heading-s:   24px;
+  --font-size-heading-m:   28px;
+  --font-size-heading-l:   30px;
+  --font-size-heading-xl:  40px;
+  --font-size-heading-xxl: 60px;
+  --line-height-tight: 1.2;   /* real: dominant heading line-height */
+
+  /* --- type: new — no dominant body/loose line-height signal found --- */
+  --font-mono: ui-monospace, 'SFMono-Regular', menlo, consolas, monospace;
+  --line-height-base:  1.5;
+  --line-height-loose: 1.6;
+
+  /* --- space: real, read off the actual margin/padding values in use --- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  10px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  30px;
+  --space-12: 40px;
+  --space-16: 50px;
+  --space-section: var(--space-12);
+  --space-gutter:  20px;   /* by far the most common gutter/padding value on the site */
+
+  /* --- shape: real, read off existing border-radius/box-shadow values --- */
+  --radius-none: 0;
+  --radius-s:    3px;
+  --radius-m:    5px;
+  --radius-l:    10px;
+  --shadow-s: 0 1px 1px rgb(0 0 0 / 5%);
+  --shadow-m: 0 1px 6px rgb(0 0 0 / 40%);
+  --shadow-l: 0 5px 125px rgb(0 0 0 / 50%);
+
+  /* --- shape: normalised — the real site uses 50% for circular avatars/icons and
+     23px/25px for pill buttons; one token can't hold both literally, so this reproduces
+     both a circle and a pill at any element size, same technique used for driv --- */
+  --radius-full: 999px;
+
+  /* --- component-level: real — the site's CTAs use the pill/circle radii above, not a
+     square shape like DRiV's; found by testing the token file against real components,
+     not read directly off the source CSS the way the rest of this file was --- */
+  --button-radius: var(--radius-full);
+
+  /* --- component-level: new — no equivalent evidence gathered yet for heading
+     weight/case or button weight/case/tracking; leaving unset falls back to the
+     browser default (normal weight, no transform) rather than a guess */
+
+  /* --- layout: real --- */
+  --layout-max-width:     1440px;
+  --layout-content-width: 720px;
+
+  /* --- motion: real --- */
+  --duration-fast:   0.2s;
+  --duration-base:   0.3s;   /* by far the most common transition duration on the site */
+  --duration-slow:   0.5s;
+  --easing-standard: ease;   /* real: the implicit default every transition on the site uses */
+
+  /* --- brand identity --- */
+  --brand-favicon: url('/icons/moog/favicon.ico');  /* real: downloaded from moogparts.com */
+
+  /* --- brand identity: new — logo assets don't exist yet. The live site's logo is a PNG
+     (/content/.../MOOG-Logo-(POS)-*.png); design needs to supply proper SVG exports
+     (standard + inverse) rather than this pointing at a raster file. --- */
+  --brand-logo:         url('/icons/moog/logo.svg');
+  --brand-logo-inverse: url('/icons/moog/logo-inverse.svg');
+}

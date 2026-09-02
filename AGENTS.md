@@ -40,6 +40,24 @@ site, it's Adobe's question. If having several brands changes the answer, it's o
   `--button-radius`) aren't in the contract — they're a brand's own structural choices
   and default per-brand, not required of every brand.
 
+## Checking what a brand still needs
+
+Onboarding a brand leaves deliberate TODOs (token values, assets, content) rather than
+guessed placeholders — see `scripts/onboard-brand.mjs`'s own doc comment for why. If
+you've just been pointed at this repo (including after a fresh sync — e.g. from
+aemcoder.adobe.io / the Experience Modernization Agent) and need to know what's
+outstanding for a given brand, don't grep for TODO by hand:
+
+    node scripts/onboard-brand.mjs <key> --check --json
+
+Machine-readable, exits 1 if anything's outstanding. Add `--dry-run` (without `--check`)
+to preview onboarding a brand that doesn't exist yet. The equivalent human-readable
+checklist lives at `docs/brands/<key>.md`. `node scripts/validate-tokens.mjs` is the
+harder gate — it fails the build on an unfilled token, a missing brand file, or
+`scripts/brands.js` drifting from `brands.json` (brand.js imports that module, not
+brands.json directly, so a brand present in one but not the other silently resolves to
+the default brand instead of erroring).
+
 ## Hard rules
 
 - Never modify `scripts/aem.js`. Extend in `scripts/lib/`.

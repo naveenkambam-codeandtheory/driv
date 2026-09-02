@@ -1,0 +1,112 @@
+/*
+ * Abex — brand tokens
+ *
+ * Custom property definitions ONLY. No element or class selectors, no layout rules, no
+ * component styling. A selector here means the difference belongs in a component token,
+ * or the component has genuinely diverged and needs an ADR.
+ *
+ * Values marked "real" were extracted from drivheavydutyparts.com/products/abex.html's
+ * own served CSS. Better than usual: that CSS ships an embedded style guide with named
+ * swatches (.style-guide-swatch-primary, -secondary, -error, etc.), so these are
+ * confirmed brand roles, not values inferred from raw frequency the way driv/moog's
+ * were. Values marked "new" have no equivalent found; treat as a starting point only.
+ */
+
+:root[data-brand='abex'] {
+  /* --- colour: real, from the page's own named style-guide swatches --- */
+  --color-accent:          #c41230;  /* @c-primary */
+  --color-accent-hover:    #a11530;  /* @c-primary-dark */
+  --color-accent-contrast: #fff;
+  --color-link:            #164991;  /* @c-secondary — distinct from primary, same pattern
+                                         as driv's own accent/link split */
+  --color-link-hover:      #0d387a;  /* @c-secondary-dark */
+  --color-text:            #333;
+  --color-text-muted:      #6e6e6e;  /* @c-grey */
+  --color-text-inverse:    #fff;
+  --color-surface:         #fff;     /* @c-white */
+  --color-surface-raised:  #ededed;  /* @c-grey-x-light */
+  --color-surface-inverse: #000;     /* @c-black */
+  --color-border:          #adadad;  /* @c-grey-light */
+  --color-focus:           var(--color-link);
+  --color-danger:          #c1001f;  /* @c-error — a distinct alert red, not the same as
+                                         the primary brand red */
+  --color-success:         #55b842;  /* from the page's .success utility class; identical
+                                         to moog's — likely a shared cross-brand utility in
+                                         the underlying fmmp-base platform, not brand-specific */
+
+  /* --- type: real, from the page's own style-guide font classes --- */
+  --font-heading: 'din-bold', sans-serif;
+  --font-body:    'din-regular', sans-serif;
+
+  /* flat body/UI copy scale */
+  --font-size-xs: 14px;
+  --font-size-s:  16px;
+  --font-size-m:  18px;
+
+  /* heading scale — flat, not responsive, same reasoning as moog: no evidence of a
+     mobile/desktop split in what was extracted */
+  --font-size-heading-xs:  20px;
+  --font-size-heading-s:   22px;
+  --font-size-heading-m:   25px;
+  --font-size-heading-l:   27px;
+  --font-size-heading-xl:  30px;
+  --font-size-heading-xxl: 36px;
+  --line-height-tight: 1.2;   /* real: dominant heading line-height */
+
+  /* --- type: new — no dominant body/loose line-height signal found --- */
+  --font-mono: ui-monospace, 'SFMono-Regular', menlo, consolas, monospace;
+  --line-height-base:  1.5;
+  --line-height-loose: 1.6;
+
+  /* --- space: real, read off actual margin/padding values in use --- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  10px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  30px;
+  --space-12: 40px;
+  --space-16: 50px;
+  --space-section: var(--space-12);
+  --space-gutter:  20px;   /* by far the most common gutter/padding value on the page */
+
+  /* --- shape: real, read off existing border-radius/box-shadow values --- */
+  --radius-none: 0;
+  --radius-s:    4px;
+  --radius-m:    5px;
+  --radius-l:    10px;
+  --shadow-s: 0 1px 1px rgb(0 0 0 / 5%);
+  --shadow-m: 0 1px 6px rgb(0 0 0 / 40%);
+  --shadow-l: 0 5px 125px rgb(0 0 0 / 50%);
+
+  /* --- shape: normalised — the page uses 50% for circular elements and large radii for
+     pill buttons; one token can't hold both literally, so this reproduces both at any
+     element size, same technique used for driv and moog --- */
+  --radius-full: 999px;
+
+  /* --- component-level: real — same finding as moog's testing: buttons on this
+     platform are pill-shaped, not square --- */
+  --button-radius: var(--radius-full);
+
+  /* --- layout: real max-width; content-width has no distinct signal on this page,
+     reused from the same shared platform's convention (moog) --- */
+  --layout-max-width:     1440px;
+  --layout-content-width: 720px;
+
+  /* --- motion: real --- */
+  --duration-fast:   0.2s;
+  --duration-base:   0.3s;   /* by far the most common transition duration on the page */
+  --duration-slow:   0.5s;
+  --easing-standard: ease;   /* real: the implicit default every transition on the page uses */
+
+  /* --- brand identity --- */
+  --brand-favicon: url('/icons/abex/favicon.ico');  /* real: downloaded from drivheavydutyparts.com */
+
+  /* --- brand identity: open question, not guessed at — the page's own logo image is
+     literally DRiV's corporate logo (DRiV_Logo.png), not an Abex-specific mark. Abex may
+     be a product line under the DRiV identity rather than its own distinct brand with its
+     own logo — confirm with the brand team before assuming either way. Pointing at the
+     same placeholder path as other brands until that's settled. --- */
+  --brand-logo:         url('/icons/abex/logo.svg');
+  --brand-logo-inverse: url('/icons/abex/logo-inverse.svg');
+}
