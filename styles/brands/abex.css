@@ -20,12 +20,12 @@
   --color-link:            #164991;  /* @c-secondary — distinct from primary, same pattern
                                          as driv's own accent/link split */
   --color-link-hover:      #0d387a;  /* @c-secondary-dark */
-  --color-text:            #333;
+  --color-text:            #111212;  /* real: homepage body copy colour */
   --color-text-muted:      #6e6e6e;  /* @c-grey */
   --color-text-inverse:    #fff;
   --color-surface:         #fff;     /* @c-white */
-  --color-surface-raised:  #ededed;  /* @c-grey-x-light */
-  --color-surface-inverse: #000;     /* @c-black */
+  --color-surface-raised:  #e7e7e7;  /* real: homepage light-grey section background */
+  --color-surface-inverse: #2a2c2e;  /* real: homepage dark section (#2a2c2e / #111212) */
   --color-border:          #adadad;  /* @c-grey-light */
   --color-focus:           var(--color-link);
   --color-danger:          #c1001f;  /* @c-error — a distinct alert red, not the same as
@@ -34,24 +34,28 @@
                                          to moog's — likely a shared cross-brand utility in
                                          the underlying fmmp-base platform, not brand-specific */
 
-  /* --- type: real, from the page's own style-guide font classes --- */
-  --font-heading: 'din-bold', sans-serif;
-  --font-body:    'din-regular', sans-serif;
+  /* --- type: real, extracted from the drivheavydutyparts.com HOMEPAGE served CSS
+     (the content this brand now serves). NOTE: the older Abex product page used DIN;
+     the current heavy-duty homepage uses a Bebas Neue condensed display face for
+     headings + Inter for body. Tokens updated to match the served homepage so the
+     migrated content renders faithfully. --- */
+  --font-heading: 'Bebas Neue', 'din-bold', sans-serif;
+  --font-body:    'Inter', 'din-regular', sans-serif;
 
   /* flat body/UI copy scale */
   --font-size-xs: 14px;
   --font-size-s:  16px;
-  --font-size-m:  18px;
+  --font-size-m:  20px;   /* real: dominant body paragraph size on the homepage */
 
-  /* heading scale — flat, not responsive, same reasoning as moog: no evidence of a
-     mobile/desktop split in what was extracted */
-  --font-size-heading-xs:  20px;
-  --font-size-heading-s:   22px;
-  --font-size-heading-m:   25px;
-  --font-size-heading-l:   27px;
-  --font-size-heading-xl:  30px;
-  --font-size-heading-xxl: 36px;
-  --line-height-tight: 1.2;   /* real: dominant heading line-height */
+  /* heading scale — real, from the homepage's large condensed display headings
+     (Bebas Neue runs visually smaller per px, hence the big values) */
+  --font-size-heading-xs:  24px;
+  --font-size-heading-s:   32px;
+  --font-size-heading-m:   40px;
+  --font-size-heading-l:   48px;
+  --font-size-heading-xl:  64px;   /* real: section h2 */
+  --font-size-heading-xxl: 104px;  /* real: hero h1 */
+  --line-height-tight: 1.05;  /* real: tight leading on the condensed display headings */
 
   /* --- type: new — no dominant body/loose line-height signal found --- */
   --font-mono: ui-monospace, 'SFMono-Regular', menlo, consolas, monospace;
