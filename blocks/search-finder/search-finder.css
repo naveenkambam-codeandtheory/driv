@@ -1,0 +1,185 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ==========================================================================
+   search-finder — MOOG "Find My Part" finder
+   Source: https://www.moogparts.com/ .driv-part-finder-main
+   Centered uppercase heading + intro, then a search field with a blue
+   submit affordance, presented on a clean white card.
+   Values extracted from source computed styles.
+   ========================================================================== */
+
+.search-finder {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 8px 0 24px;
+  text-align: center;
+}
+
+/* header ------------------------------------------------------------------- */
+.search-finder .search-finder-header {
+  margin-bottom: 24px;
+}
+
+.search-finder .search-finder-title {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: var(--font-size-heading-xl);
+  line-height: 1.2;
+  text-align: center;
+
+  /* inherits brand heading family (Roboto 900 italic), uppercase, brand-blue */
+}
+
+.search-finder .search-finder-intro {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: var(--font-size-m);
+  line-height: 1.6;
+  color: var(--color-text);
+  text-align: center;
+}
+
+/* search box --------------------------------------------------------------- */
+.search-finder .search-finder-box {
+  display: flex;
+  align-items: stretch;
+  max-width: 560px;
+  margin: 0 auto;
+  border: 1px solid var(--color-border);
+}
+
+.search-finder .search-finder-box input.search-finder-input {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 48px;
+  margin: 0;
+  padding: 0 7px 0 20px;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  outline: none;
+  appearance: none;
+}
+
+.search-finder .search-finder-box input.search-finder-input::placeholder {
+  color: var(--color-text);
+  opacity: 1;
+}
+
+.search-finder .search-finder-box input.search-finder-input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+/* blue submit affordance (rendered from the search icon) */
+.search-finder .search-finder-box .icon-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 48px;
+  background-color: var(--color-accent);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.search-finder .search-finder-box .icon-search:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.search-finder .search-finder-box .icon-search img {
+  width: 22px;
+  height: 22px;
+
+  /* white glyph on the blue button */
+  filter: brightness(0) invert(1);
+}
+
+/* search results ----------------------------------------------------------- */
+.search-finder ul.search-finder-results {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin: 32px 0 0;
+  padding-left: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.search-finder ul.search-finder-results > li {
+  border: 1px solid var(--color-border);
+}
+
+.search-finder ul.search-finder-results > li > a {
+  display: block;
+  height: 100%;
+  background-color: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.search-finder ul.search-finder-results > li > a:hover,
+.search-finder ul.search-finder-results > li > a:focus {
+  text-decoration: none;
+}
+
+.search-finder ul.search-finder-results > li .search-finder-result-title,
+.search-finder ul.search-finder-results > li p {
+  padding: 0 16px;
+}
+
+.search-finder ul.search-finder-results > li .search-finder-result-title {
+  margin: 16px 0 0;
+  font-size: var(--font-size-m);
+}
+
+.search-finder ul.search-finder-results > li .search-finder-result-title a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.search-finder ul.search-finder-results > li .search-finder-result-title a:hover {
+  color: var(--color-accent-hover);
+}
+
+.search-finder ul.search-finder-results > li p {
+  margin: 8px 0 16px;
+  font-size: var(--font-size-s);
+  color: var(--color-text);
+}
+
+.search-finder ul.search-finder-results > li picture img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.search-finder ul.search-finder-results mark {
+  background-color: var(--color-cta-secondary);
+  color: inherit;
+}
+
+/* no results */
+.search-finder ul.search-finder-results.no-results {
+  display: block;
+  margin-top: 24px;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.search-finder ul.search-finder-results.no-results > li {
+  border: none;
+}
+
+/* desktop refinements ------------------------------------------------------ */
+@media (width >= 900px) {
+  .search-finder ul.search-finder-results {
+    grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
+  }
+}

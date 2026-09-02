@@ -9,3 +9,8 @@ helix-importer-ui
 .idea
 .impeccable/
 .playwright-cli/
+
+# Migration scratch/working dirs — not code, never committed
+.migration/
+migration-work/
+tools/importer/

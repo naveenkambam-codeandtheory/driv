@@ -1,0 +1,38 @@
+{
+  "variantName": "search-finder",
+  "baseBlock": "search",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.moogparts.com/",
+    "originPage": "MOOG homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "parts-finder",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + intro + vehicle dropdown + part-number input + submit",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "light-background product/parts finder widgets",
+      "dual-mode lookups (by vehicle and by part number)",
+      "catalog search landing areas without tabs"
+    ],
+    "notSuitableFor": [
+      "dark multi-tab parts finders (use search-partsfinder)",
+      "image gallery sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}
