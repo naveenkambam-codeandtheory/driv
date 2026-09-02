@@ -29,6 +29,8 @@ export default {
       hosts: [
         'main--moog--naveenkambam-codeandtheory.aem.page',
         'main--moog--naveenkambam-codeandtheory.aem.live',
+        'main--moong--naveenkambam-codeandtheory.aem.page',
+        'main--moong--naveenkambam-codeandtheory.aem.live',
       ],
       locales: ['en-us'],
       indexPath: '/query-index.json',
