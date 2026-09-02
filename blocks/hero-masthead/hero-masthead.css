@@ -1,0 +1,132 @@
+/* stylelint-disable no-descending-specificity */
+
+/* Block: hero-masthead
+ * Full-width dark masthead: cover background photo + black overlay,
+ * white left-aligned uppercase italic heading, supporting copy, one CTA.
+ * Values extracted from source computed styles (moogparts.com header-hero).
+ */
+
+/* full-bleed: override EDS section/wrapper max-width */
+.hero-masthead-container .hero-masthead-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-masthead.block {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+  min-height: 360px;
+  margin: 0;
+  padding: 32px 24px;
+  overflow: hidden;
+
+  /* dark fallback so text stays readable when the reference image
+     is unresolved (e.g. doc preview) */
+  background-color: var(--color-surface-deep, var(--color-surface-inverse));
+  color: var(--color-text-inverse);
+}
+
+/* row 1 = image cell -> cover background layer */
+.hero-masthead.block > div:first-child {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+}
+
+.hero-masthead.block > div:first-child,
+.hero-masthead.block > div:first-child > div,
+.hero-masthead.block > div:first-child p,
+.hero-masthead.block > div:first-child picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-masthead.block > div:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* black overlay at 0.7 (source: .header-hero-background::before) */
+.hero-masthead.block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: var(--color-scrim);
+  pointer-events: none;
+}
+
+/* row 2 = text cell -> content, sits above overlay */
+.hero-masthead.block > div:last-child {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+}
+
+.hero-masthead.block > div:last-child > div {
+  max-width: 720px;
+}
+
+/* heading (h1 on instance 1, h2 on instance 2) — white, tight leading.
+   Source sizes h1 at 70px/1.0 and h2 at 40px/1.2 */
+.hero-masthead.block h1,
+.hero-masthead.block h2 {
+  margin: 0 0 15px;
+  color: var(--color-text-inverse);
+}
+
+.hero-masthead.block h1 {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.hero-masthead.block h2 {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.hero-masthead.block p {
+  margin: 0 0 15px;
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-loose);
+}
+
+.hero-masthead.block p strong {
+  font-weight: 400;
+}
+
+/* CTA button — brand blue solid (matches source #0032a0 = --brand-blue) */
+.hero-masthead.block .button-container {
+  margin: 25px 0 0;
+}
+
+.hero-masthead.block a.button:any-link {
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  .hero-masthead.block {
+    align-items: flex-end;
+    min-height: 600px;
+    padding: 90px;
+  }
+
+  .hero-masthead.block h1 {
+    font-size: 70px;
+  }
+
+  .hero-masthead.block h2 {
+    font-size: 40px;
+  }
+}
