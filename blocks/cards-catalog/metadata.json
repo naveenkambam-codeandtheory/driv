@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-catalog",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-02T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.drivheavydutyparts.com/",
+    "originPage": "DRiV Heavy Duty homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "category",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + title + subtitle + tile-link",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "digital-catalog / vehicle-type category tile grids on a light section",
+      "icon + title + short description tiles where the whole tile is a link",
+      "3-up navigation tile rows with no explicit button"
+    ],
+    "notSuitableFor": [
+      "brand/logo tiles with an explicit Visit Site CTA button (use cards-brand)",
+      "editorial article grids with photos and read-more links (use cards-article)",
+      "blue product-category tiles with a See Products CTA (use cards-category)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-02T00:00:00.000Z"
+  }
+}

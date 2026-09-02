@@ -39,6 +39,18 @@
     ]
   },
   {
+    "id": "cards-brand",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-catalog",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards-category",
     "components": [
       "card"

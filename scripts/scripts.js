@@ -22,6 +22,24 @@ import { getBrand } from './brand.js';
 export const NX_ORIGIN = 'https://da.live/nx';
 
 /**
+ * Moves all instrumentation attributes from one element to another.
+ * Used by container blocks (cards variants) to preserve Universal Editor
+ * authoring instrumentation when re-parenting cells into decorated markup.
+ * @param {Element} from source element
+ * @param {Element} to target element
+ */
+export function moveInstrumentation(from, to) {
+  if (!from || !to) return;
+  const attrs = [...from.attributes]
+    .map(({ nodeName }) => nodeName)
+    .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'));
+  attrs.forEach((attr) => {
+    to.setAttribute(attr, from.getAttribute(attr));
+    from.removeAttribute(attr);
+  });
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
