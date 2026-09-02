@@ -63,6 +63,8 @@ jobs:
             preview_host: driv--naveenkambam-codeandtheory
           - brand: moog
             preview_host: moog--naveenkambam-codeandtheory
+          - brand: abex
+            preview_host: abex--naveenkambam-codeandtheory
     steps:
       - uses: actions/checkout@v4
       - name: Resolve preview URL

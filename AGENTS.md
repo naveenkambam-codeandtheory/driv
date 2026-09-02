@@ -26,9 +26,15 @@ site, it's Adobe's question. If having several brands changes the answer, it's o
 
 ## This project's shape
 
-- Repoless: each brand is its own site (own content source, own hostname), driven by
-  this one code repository. `pathPrefix` is `"/"` for every brand; resolution falls to
-  `theme` metadata, then hostname. See `brands.json` and `scripts/brand.js`.
+- Repoless (see https://www.aem.live/developer/repoless-authoring): each brand is its own
+  site (own content source, own hostname), driven by this one code repository.
+  `pathPrefix` is `"/"` for every brand; resolution falls to `theme` metadata, then
+  hostname. See `brands.json` and `scripts/brand.js`. `platform.json`'s
+  `conventions.repoless: true` is what makes `scripts/onboard-brand.mjs` default a new
+  brand's `--prefix` to `/` instead of `/<key>` — a brand with its own hostname but a
+  non-`/` `pathPrefix` is a drift bug (it happened once, to Abex), not a valid
+  configuration, because nothing in this repo constructs a brand's URLs from anything
+  but `pathPrefix`.
 - Brand CSS loads **per brand at runtime**, not bundled into `styles.css` and not a
   static `<link>` in `head.html`. `scripts/scripts.js`'s `loadEager` resolves the brand
   and fetches only `styles/brands/<that brand's key>.css` — deliberately, so a page

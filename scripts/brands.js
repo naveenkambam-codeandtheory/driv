@@ -38,13 +38,13 @@ export default {
     abex: {
       key: 'abex',
       name: 'Abex',
-      pathPrefix: '/abex',
+      pathPrefix: '/',
       hosts: [
         'main--abex--naveenkambam-codeandtheory.aem.page',
         'main--abex--naveenkambam-codeandtheory.aem.live',
       ],
       locales: ['en-us'],
-      indexPath: '/abex/query-index.json',
+      indexPath: '/query-index.json',
       features: {},
       endpoints: {},
     },
